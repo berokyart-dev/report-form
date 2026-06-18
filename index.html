@@ -3,379 +3,405 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Отчёт о работе</title>
+  <title>ЕМС — Отчёт на повышение</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #0a0b0e;
-      --surface: #111318;
-      --surface2: #161920;
-      --border: #1e2130;
-      --gold: #c9a84c;
-      --gold2: #e8c96d;
-      --gold-dim: rgba(201,168,76,0.12);
-      --text: #dde1ef;
-      --muted: #5a607a;
-      --input-bg: #0d0f15;
+      --bg: #0a0f0a;
+      --surface: #0f1610;
+      --surface2: #131d14;
+      --border: #1a2e1b;
+      --green: #2ecc71;
+      --green2: #27ae60;
+      --green-dim: rgba(46,204,113,0.1);
+      --text: #ddeedd;
+      --muted: #4a6e4b;
+      --input-bg: #0c130c;
       --success: #2ecc71;
       --error: #e74c3c;
-      --red: #c0392b;
     }
-
-    @import url('data:text/css,');
-
     body {
       background: var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 0 60px;
+      display: flex; flex-direction: column; align-items: center;
     }
-
-    /* TOP BANNER */
-    .banner {
+    .header {
       width: 100%;
-      background: linear-gradient(180deg, #0d1017 0%, #080a0e 100%);
+      background: linear-gradient(180deg, #0d160d 0%, #0a0f0a 100%);
       border-bottom: 1px solid var(--border);
-      padding: 18px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 40px;
+      padding: 16px 40px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .banner-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo-badge {
-      width: 38px; height: 38px;
-      background: linear-gradient(135deg, var(--gold), #8a5e1a);
-      border-radius: 8px;
+    .logo { display: flex; align-items: center; gap: 14px; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--green-dim);
+      border: 1px solid rgba(46,204,113,0.3);
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 900; color: #000;
-      letter-spacing: -1px;
+      font-size: 22px;
     }
-
-    .logo-text {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.5px;
+    .logo-name { font-size: 18px; font-weight: 800; color: var(--green); letter-spacing: 3px; }
+    .logo-sub { font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-top: 2px; }
+    .header-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--green); border: 1px solid rgba(46,204,113,0.25);
+      background: var(--green-dim); padding: 6px 14px; border-radius: 20px;
     }
-
-    .logo-sub {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 1px;
-    }
-
-    .banner-tag {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 5px 12px;
-      border-radius: 20px;
-    }
-
-    /* MAIN */
-    .container {
-      width: 100%;
-      max-width: 680px;
-      padding: 0 20px;
-    }
-
-    .page-title {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .page-subtitle {
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 32px;
-      letter-spacing: -0.3px;
-    }
-
-    /* CARD */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-
-    .card-header {
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card-num {
-      width: 24px; height: 24px;
-      background: var(--gold-dim);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 6px;
+    .progress-wrap { width: 100%; max-width: 680px; padding: 32px 20px 0; }
+    .steps-row { display: flex; align-items: center; margin-bottom: 32px; }
+    .step-item { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+    .step-circle {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 2px solid var(--border); background: var(--surface);
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--gold);
+      font-size: 12px; font-weight: 700; color: var(--muted);
+      transition: all 0.3s; position: relative; z-index: 1;
     }
-
-    .card-title {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text);
+    .step-circle.active { border-color: var(--green); background: var(--green-dim); color: var(--green); box-shadow: 0 0 16px rgba(46,204,113,0.2); }
+    .step-circle.done { border-color: var(--green2); background: var(--green2); color: #000; }
+    .step-label { font-size: 10px; color: var(--muted); letter-spacing: 0.5px; text-align: center; white-space: nowrap; }
+    .step-label.active { color: var(--green); }
+    .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 -2px; margin-bottom: 22px; transition: background 0.3s; }
+    .step-line.done { background: var(--green2); }
+    .container { width: 100%; max-width: 680px; padding: 0 20px 60px; }
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+    .panel-title { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+    .panel-heading { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 24px; letter-spacing: -0.3px; }
+    .rank-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .rank-card {
+      background: var(--surface); border: 2px solid var(--border); border-radius: 12px;
+      padding: 18px 20px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: all 0.2s;
     }
-
-    .card-body {
-      padding: 20px;
+    .rank-card:hover { border-color: rgba(46,204,113,0.3); background: var(--surface2); }
+    .rank-card.selected { border-color: var(--green); background: var(--green-dim); box-shadow: 0 0 20px rgba(46,204,113,0.1); }
+    .rank-radio {
+      width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border);
+      background: var(--input-bg); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
     }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      margin-bottom: 14px;
-    }
-
+    .rank-card.selected .rank-radio { border-color: var(--green); background: var(--green); }
+    .rank-radio-dot { width: 8px; height: 8px; border-radius: 50%; background: #000; opacity: 0; transition: opacity 0.2s; }
+    .rank-card.selected .rank-radio-dot { opacity: 1; }
+    .rank-info { flex: 1; }
+    .rank-title { font-size: 15px; font-weight: 600; color: var(--text); }
+    .rank-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .rank-badge { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--green); background: var(--green-dim); border: 1px solid rgba(46,204,113,0.2); padding: 4px 10px; border-radius: 20px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
+    .card-header { background: var(--surface2); border-bottom: 1px solid var(--border); padding: 13px 20px; display: flex; align-items: center; gap: 10px; }
+    .card-num { width: 24px; height: 24px; background: var(--green-dim); border: 1px solid rgba(46,204,113,0.25); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--green); }
+    .card-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text); }
+    .card-body { padding: 18px 20px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
     .field:last-child { margin-bottom: 0; }
-
-    label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
+    label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .field-hint { font-size: 11px; color: rgba(46,204,113,0.5); margin-top: -3px; font-style: italic; }
     input {
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 11px 14px;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 14px;
-      outline: none;
-      width: 100%;
-      transition: border-color 0.2s, background 0.2s;
+      background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 11px 14px; color: var(--text); font-family: inherit; font-size: 14px;
+      outline: none; width: 100%; transition: border-color 0.2s;
     }
-
-    input::placeholder { color: #252836; }
-
-    input:focus {
-      border-color: rgba(201,168,76,0.5);
-      background: #0f1118;
-    }
-
-    /* SUBMIT CARD */
-    .submit-card {
-      background: linear-gradient(135deg, #0f1118, #0a0c12);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 16px;
-    }
-
-    .webhook-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(201,168,76,0.6);
-      margin-bottom: 8px;
-    }
-
+    input::placeholder { color: #1a2e1b; }
+    input:focus { border-color: rgba(46,204,113,0.4); }
+    .btn-row { display: flex; gap: 12px; margin-top: 20px; }
     .btn {
-      width: 100%;
-      margin-top: 20px;
-      padding: 14px;
-      background: linear-gradient(135deg, var(--gold), #8a5e1a);
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      flex: 1; padding: 13px; border: none; border-radius: 8px; font-family: inherit;
+      font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
       transition: opacity 0.2s, transform 0.1s;
     }
-
-    .btn:hover { opacity: 0.9; }
+    .btn-primary { background: linear-gradient(135deg, var(--green), var(--green2)); color: #000; }
+    .btn-secondary { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); flex: 0 0 auto; padding: 13px 20px; }
+    .btn:hover { opacity: 0.85; }
     .btn:active { transform: scale(0.99); }
-    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-    /* TOAST */
+    .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
+    .summary-header { background: var(--green-dim); border-bottom: 1px solid rgba(46,204,113,0.15); padding: 12px 20px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); }
+    .summary-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 20px; border-bottom: 1px solid var(--border); gap: 12px; }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-key { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+    .summary-val { font-size: 12px; color: var(--text); font-weight: 500; text-align: right; word-break: break-all; }
     .toast {
-      position: fixed;
-      bottom: 28px;
-      left: 50%;
+      position: fixed; bottom: 28px; left: 50%;
       transform: translateX(-50%) translateY(100px);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 13px 22px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      transition: transform 0.3s ease;
-      z-index: 100;
-      white-space: nowrap;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 13px 22px; font-size: 13px; font-weight: 600;
+      transition: transform 0.3s ease; z-index: 100; white-space: nowrap;
     }
-
     .toast.show { transform: translateX(-50%) translateY(0); }
     .toast.success { border-color: var(--success); color: var(--success); }
     .toast.error { border-color: var(--error); color: var(--error); }
-
-    .spinner {
-      width: 16px; height: 16px;
-      border: 2px solid rgba(0,0,0,0.3);
-      border-top-color: #000;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-    }
-
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(0,0,0,0.3); border-top-color: #000; border-radius: 50%; animation: spin 0.7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* DIVIDER */
-    .gold-line {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
-      margin: 8px 0 24px;
-    }
-
+    .success-screen { display: none; flex-direction: column; align-items: center; text-align: center; padding: 60px 20px; }
+    .success-screen.active { display: flex; }
+    .success-icon { width: 80px; height: 80px; background: var(--green-dim); border: 2px solid rgba(46,204,113,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-bottom: 24px; box-shadow: 0 0 40px rgba(46,204,113,0.15); }
+    .success-title { font-size: 22px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+    .success-sub { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 340px; }
+    .btn-new { margin-top: 32px; padding: 13px 32px; background: var(--green-dim); border: 1px solid rgba(46,204,113,0.3); border-radius: 8px; color: var(--green); font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
     @media (max-width: 500px) {
-      .banner { padding: 14px 20px; }
+      .header { padding: 14px 16px; }
       .row { grid-template-columns: 1fr; }
-      .page-subtitle { font-size: 20px; }
+      .logo-name { font-size: 15px; }
+      .header-badge { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- BANNER -->
-<div class="banner">
-  <div class="banner-logo">
-    <div class="logo-badge">M</div>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">🏥</div>
     <div>
-      <div class="logo-text">MAJESTIC RP</div>
-      <div class="logo-sub">Система отчётности</div>
+      <div class="logo-name">E M S</div>
+      <div class="logo-sub">Emergency Medical Service</div>
     </div>
   </div>
-  <div class="banner-tag">Служебный портал</div>
+  <div class="header-badge">Служебный портал</div>
+</div>
+
+<div class="progress-wrap">
+  <div class="steps-row">
+    <div class="step-item">
+      <div class="step-circle active" id="sc1">1</div>
+      <div class="step-label active" id="sl1">Ранг</div>
+    </div>
+    <div class="step-line" id="line1"></div>
+    <div class="step-item">
+      <div class="step-circle" id="sc2">2</div>
+      <div class="step-label" id="sl2">Данные</div>
+    </div>
+    <div class="step-line" id="line2"></div>
+    <div class="step-item">
+      <div class="step-circle" id="sc3">3</div>
+      <div class="step-label" id="sl3">Подтверждение</div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
-  <div class="page-title">Документация</div>
-  <div class="page-subtitle">Отчёт о проделанной работе</div>
-  <div class="gold-line"></div>
 
-  <!-- CARD 1 -->
-  <div class="card">
-    <div class="card-header">
-      <div class="card-num">01</div>
-      <div class="card-title">Личные данные</div>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="field">
-          <label>Фамилия</label>
-          <input type="text" id="lastName" placeholder="Иванов" />
+  <!-- STEP 1: RANK -->
+  <div class="step-panel active" id="step1">
+    <div class="panel-title">Шаг 1 из 3</div>
+    <div class="panel-heading">На какой ранг вы повышаетесь?</div>
+    <div class="rank-grid">
+      <div class="rank-card" onclick="selectRank(this, '1→2')">
+        <div class="rank-radio"><div class="rank-radio-dot"></div></div>
+        <div class="rank-info">
+          <div class="rank-title">С 1 на 2</div>
+          <div class="rank-sub">Intern → Intern II</div>
         </div>
+        <div class="rank-badge">РАНГ 1→2</div>
+      </div>
+      <div class="rank-card" onclick="selectRank(this, '2→3')">
+        <div class="rank-radio"><div class="rank-radio-dot"></div></div>
+        <div class="rank-info">
+          <div class="rank-title">С 2 на 3</div>
+          <div class="rank-sub">Intern II → Junior</div>
+        </div>
+        <div class="rank-badge">РАНГ 2→3</div>
+      </div>
+      <div class="rank-card" onclick="selectRank(this, '3→4')">
+        <div class="rank-radio"><div class="rank-radio-dot"></div></div>
+        <div class="rank-info">
+          <div class="rank-title">С 3 на 4</div>
+          <div class="rank-sub">Junior → Middle</div>
+        </div>
+        <div class="rank-badge">РАНГ 3→4</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="goStep(2)">Далее →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: DATA (динамические поля) -->
+  <div class="step-panel" id="step2">
+    <div class="panel-title">Шаг 2 из 3</div>
+    <div class="panel-heading" id="step2-heading">Данные для повышения</div>
+
+    <!-- Общие поля (всегда) -->
+    <div class="card">
+      <div class="card-header"><div class="card-num">01</div><div class="card-title">Личные данные</div></div>
+      <div class="card-body">
         <div class="field">
-          <label>Имя</label>
-          <input type="text" id="firstName" placeholder="Иван" />
+          <label>Имя Фамилия</label>
+          <input type="text" id="fullName" placeholder="Иван Иванов"/>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Номер ID карты (#статик)</label>
+          <input type="text" id="staticId" placeholder="Например: 316757"/>
         </div>
       </div>
-      <div class="field">
-        <label>Статик (ID в игре)</label>
-        <input type="text" id="staticId" placeholder="Например: 316757" />
+    </div>
+
+    <!-- Поля для 1→2 -->
+    <div id="fields-12" style="display:none">
+      <div class="card">
+        <div class="card-header"><div class="card-num">02</div><div class="card-title">Документы</div></div>
+        <div class="card-body">
+          <div class="field">
+            <label>Фотография данных сотрудника</label>
+            <div class="field-hint">Ссылка из Discord</div>
+            <input type="url" id="f12_employee" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Фотография удостоверения</label>
+            <input type="url" id="f12_cert" placeholder="https://discord.com/channels/..."/>
+          </div>
+        </div>
       </div>
+      <div class="card">
+        <div class="card-header"><div class="card-num">03</div><div class="card-title">Доказательства</div></div>
+        <div class="card-body">
+          <div class="field">
+            <label>Выдача таблеток в Городской больнице (25 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f12_p1" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Выдача таблеток Сенди-Шорс (20 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f12_p2" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Успешное прохождение вступительного экзамена</label>
+            <input type="url" id="f12_p3" placeholder="https://discord.com/channels/..."/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Поля для 2→3 -->
+    <div id="fields-23" style="display:none">
+      <div class="card">
+        <div class="card-header"><div class="card-num">02</div><div class="card-title">Доказательства</div></div>
+        <div class="card-body">
+          <div class="field">
+            <label>Выдача таблеток в Городской больнице (25 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f23_p1" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Выдача таблеток Сенди-Шорс (20 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f23_p2" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Выдача таблеток Палето-Бэй (10 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f23_p3" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Выдача вакцин (5 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f23_p4" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Прохождение обучения "ПМП"</label>
+            <input type="url" id="f23_p5" placeholder="https://discord.com/channels/..."/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Поля для 3→4 -->
+    <div id="fields-34" style="display:none">
+      <div class="card">
+        <div class="card-header"><div class="card-num">02</div><div class="card-title">Доказательства</div></div>
+        <div class="card-body">
+          <div class="field">
+            <label>Выдача таблеток в Городской больнице (25 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f34_p1" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Выдача таблеток Сенди-Шорс (20 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f34_p2" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Выдача таблеток Палето-Бэй (10 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f34_p3" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Выдача вакцин (8 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f34_p4" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Оказание ПМП (20 шт)</label>
+            <div class="field-hint">Ссылка из тасков</div>
+            <input type="url" id="f34_p5" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Экзамен "Медицинского обслуживания и уборки"</label>
+            <input type="url" id="f34_p6" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field">
+            <label>Экзамен "Выход в жизнь"</label>
+            <input type="url" id="f34_p7" placeholder="https://discord.com/channels/..."/>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Получение дефибриллятора</label>
+            <div class="field-hint">Ссылка/фото на отчёт или фото личного</div>
+            <input type="url" id="f34_p8" placeholder="https://discord.com/channels/..."/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(1)">← Назад</button>
+      <button class="btn btn-primary" onclick="goStep(3)">Далее →</button>
     </div>
   </div>
 
-  <!-- CARD 2 -->
-  <div class="card">
-    <div class="card-header">
-      <div class="card-num">02</div>
-      <div class="card-title">Данные сотрудников</div>
+  <!-- STEP 3: CONFIRM -->
+  <div class="step-panel" id="step3">
+    <div class="panel-title">Шаг 3 из 3</div>
+    <div class="panel-heading">Подтверждение отчёта</div>
+    <div class="summary-card">
+      <div class="summary-header">📋 Данные отчёта</div>
+      <div id="summaryRows"></div>
     </div>
-    <div class="card-body">
-      <div class="field" style="margin-bottom:0">
-        <label>Ссылка на сообщение в Discord</label>
-        <input type="url" id="employeeData" placeholder="https://discord.com/channels/..." />
-      </div>
-    </div>
-  </div>
-
-  <!-- CARD 3 -->
-  <div class="card">
-    <div class="card-header">
-      <div class="card-num">03</div>
-      <div class="card-title">Доказательства работы</div>
-    </div>
-    <div class="card-body">
-      <div class="field">
-        <label>Доказательство #1</label>
-        <input type="url" id="proof1" placeholder="https://discord.com/channels/..." />
-      </div>
-      <div class="field" style="margin-bottom:0">
-        <label>Доказательство #2</label>
-        <input type="url" id="proof2" placeholder="https://discord.com/channels/..." />
-      </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(2)">← Назад</button>
+      <button class="btn btn-primary" id="sendBtn" onclick="sendReport()">✓ Отправить отчёт</button>
     </div>
   </div>
 
-  <!-- SUBMIT -->
-  <div class="submit-card">
-    <div class="webhook-label">✦ Готово к отправке</div>
-    <div style="font-size:13px; color: var(--muted); line-height:1.6;">
-      Убедитесь, что все поля заполнены корректно перед отправкой отчёта в Discord канал.
-    </div>
-    <button class="btn" id="sendBtn" onclick="sendReport()">
-      ➤ Отправить отчёт
-    </button>
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <div class="success-title">Отчёт отправлен!</div>
+    <div class="success-sub">Ваш отчёт на повышение успешно отправлен в Discord канал ЕМС. Ожидайте рассмотрения.</div>
+    <button class="btn-new" onclick="resetForm()">+ Новый отчёт</button>
   </div>
+
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
   const WEBHOOK = "https://discord.com/api/webhooks/1517067090048061520/in9vTctsvz3L5BNGc3Beogq69Bz3SF83fv9Lhs40y4Vz59T3VqjyElRpvXtrvljpAsmC";
+
+  let selectedRank = '';
+  let currentStep = 1;
+
+  window.addEventListener('DOMContentLoaded', () => updateProgress(1));
+
+  function selectRank(el, rank) {
+    document.querySelectorAll('.rank-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedRank = rank;
+  }
 
   function showToast(msg, type) {
     const t = document.getElementById('toast');
@@ -384,34 +410,124 @@
     setTimeout(() => t.classList.remove('show'), 3500);
   }
 
-  async function sendReport() {
-    const lastName     = document.getElementById('lastName').value.trim();
-    const firstName    = document.getElementById('firstName').value.trim();
-    const staticId     = document.getElementById('staticId').value.trim();
-    const employeeData = document.getElementById('employeeData').value.trim();
-    const proof1       = document.getElementById('proof1').value.trim();
-    const proof2       = document.getElementById('proof2').value.trim();
-
-    if (!lastName || !firstName || !staticId || !employeeData || !proof1 || !proof2) {
-      showToast('⚠️ Заполните все поля!', 'error'); return;
+  function updateProgress(step) {
+    for (let i = 1; i <= 3; i++) {
+      const sc = document.getElementById('sc' + i);
+      const sl = document.getElementById('sl' + i);
+      sc.className = 'step-circle';
+      sl.className = 'step-label';
+      if (i < step) { sc.classList.add('done'); sc.textContent = '✓'; }
+      else if (i === step) { sc.classList.add('active'); sl.classList.add('active'); sc.textContent = i; }
+      else { sc.textContent = i; }
     }
+    for (let i = 1; i <= 2; i++) {
+      const line = document.getElementById('line' + i);
+      line.className = 'step-line' + (i < step ? ' done' : '');
+    }
+  }
 
+  function showRankFields() {
+    ['fields-12','fields-23','fields-34'].forEach(id => document.getElementById(id).style.display = 'none');
+    if (selectedRank === '1→2') {
+      document.getElementById('fields-12').style.display = 'block';
+      document.getElementById('step2-heading').textContent = 'Отчёт на повышение 1→2';
+    } else if (selectedRank === '2→3') {
+      document.getElementById('fields-23').style.display = 'block';
+      document.getElementById('step2-heading').textContent = 'Отчёт на повышение 2→3';
+    } else if (selectedRank === '3→4') {
+      document.getElementById('fields-34').style.display = 'block';
+      document.getElementById('step2-heading').textContent = 'Отчёт на повышение 3→4';
+    }
+  }
+
+  function getFieldsForRank() {
+    const common = [
+      { key: 'Повышение', val: selectedRank },
+      { key: 'Имя Фамилия', val: document.getElementById('fullName').value.trim() },
+      { key: 'Статик', val: document.getElementById('staticId').value.trim() },
+    ];
+    if (selectedRank === '1→2') {
+      return [...common,
+        { key: 'Данные сотрудника', val: document.getElementById('f12_employee').value.trim() },
+        { key: 'Удостоверение', val: document.getElementById('f12_cert').value.trim() },
+        { key: 'Таблетки Городская (25 шт)', val: document.getElementById('f12_p1').value.trim() },
+        { key: 'Таблетки Сенди-Шорс (20 шт)', val: document.getElementById('f12_p2').value.trim() },
+        { key: 'Вступительный экзамен', val: document.getElementById('f12_p3').value.trim() },
+      ];
+    } else if (selectedRank === '2→3') {
+      return [...common,
+        { key: 'Таблетки Городская (25 шт)', val: document.getElementById('f23_p1').value.trim() },
+        { key: 'Таблетки Сенди-Шорс (20 шт)', val: document.getElementById('f23_p2').value.trim() },
+        { key: 'Таблетки Палето-Бэй (10 шт)', val: document.getElementById('f23_p3').value.trim() },
+        { key: 'Вакцины (5 шт)', val: document.getElementById('f23_p4').value.trim() },
+        { key: 'Обучение "ПМП"', val: document.getElementById('f23_p5').value.trim() },
+      ];
+    } else {
+      return [...common,
+        { key: 'Таблетки Городская (25 шт)', val: document.getElementById('f34_p1').value.trim() },
+        { key: 'Таблетки Сенди-Шорс (20 шт)', val: document.getElementById('f34_p2').value.trim() },
+        { key: 'Таблетки Палето-Бэй (10 шт)', val: document.getElementById('f34_p3').value.trim() },
+        { key: 'Вакцины (8 шт)', val: document.getElementById('f34_p4').value.trim() },
+        { key: 'ПМП (20 шт)', val: document.getElementById('f34_p5').value.trim() },
+        { key: 'Экзамен обслуживания и уборки', val: document.getElementById('f34_p6').value.trim() },
+        { key: 'Экзамен "Выход в жизнь"', val: document.getElementById('f34_p7').value.trim() },
+        { key: 'Дефибриллятор', val: document.getElementById('f34_p8').value.trim() },
+      ];
+    }
+  }
+
+  function validateStep2() {
+    const name = document.getElementById('fullName').value.trim();
+    const sid = document.getElementById('staticId').value.trim();
+    if (!name || !sid) return false;
+    const fields = getFieldsForRank().slice(3); // skip common 3
+    return fields.every(f => f.val.length > 0);
+  }
+
+  function fillSummary() {
+    const fields = getFieldsForRank();
+    const container = document.getElementById('summaryRows');
+    container.innerHTML = fields.map(f => `
+      <div class="summary-row">
+        <div class="summary-key">${f.key}</div>
+        <div class="summary-val">${f.val || '—'}</div>
+      </div>
+    `).join('');
+  }
+
+  function goStep(step) {
+    if (step > currentStep) {
+      if (currentStep === 1 && !selectedRank) {
+        showToast('⚠️ Выберите ранг!', 'error'); return;
+      }
+      if (currentStep === 2 && !validateStep2()) {
+        showToast('⚠️ Заполните все поля!', 'error'); return;
+      }
+    }
+    if (step === 2) showRankFields();
+    if (step === 3) fillSummary();
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('step' + step).classList.add('active');
+    currentStep = step;
+    updateProgress(step);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async function sendReport() {
+    const fields = getFieldsForRank();
     const btn = document.getElementById('sendBtn');
     btn.disabled = true;
     btn.innerHTML = '<div class="spinner"></div> Отправка...';
 
+    const embedFields = fields.map(f => ({ name: f.key, value: f.val || '—' }));
+    const rankLabels = { '1→2': 'Intern → Intern II', '2→3': 'Intern II → Junior', '3→4': 'Junior → Middle' };
+
     const embed = {
-      title: '📋 Новый отчёт о работе',
-      color: 0xc9a84c,
-      fields: [
-        { name: '👤 Сотрудник', value: `**${lastName} ${firstName}**`, inline: true },
-        { name: '🎮 Статик', value: `\`${staticId}\``, inline: true },
-        { name: '\u200b', value: '\u200b', inline: false },
-        { name: '📂 Данные сотрудников', value: employeeData },
-        { name: '✅ Доказательство #1', value: proof1 },
-        { name: '✅ Доказательство #2', value: proof2 },
-      ],
-      footer: { text: 'Majestic RP • Система отчётности' },
+      title: `🏥 Отчёт на повышение EMS — ${selectedRank}`,
+      description: `**${rankLabels[selectedRank] || selectedRank}**`,
+      color: 0x2ecc71,
+      fields: embedFields,
+      footer: { text: 'EMS • Система отчётности' },
       timestamp: new Date().toISOString()
     };
 
@@ -421,21 +537,32 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ embeds: [embed] })
       });
-
       if (res.ok || res.status === 204) {
-        showToast('✅ Отчёт успешно отправлен!', 'success');
-        ['lastName','firstName','staticId','employeeData','proof1','proof2'].forEach(id => {
-          document.getElementById(id).value = '';
-        });
+        document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+        document.querySelector('.progress-wrap').style.display = 'none';
+        document.getElementById('successScreen').classList.add('active');
       } else {
         showToast('❌ Ошибка отправки. Попробуйте снова.', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '✓ Отправить отчёт';
       }
     } catch(e) {
       showToast('❌ Не удалось отправить.', 'error');
+      btn.disabled = false;
+      btn.innerHTML = '✓ Отправить отчёт';
     }
+  }
 
-    btn.disabled = false;
-    btn.innerHTML = '➤ Отправить отчёт';
+  function resetForm() {
+    selectedRank = ''; currentStep = 1;
+    document.querySelectorAll('.rank-card').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('input').forEach(i => i.value = '');
+    document.getElementById('successScreen').classList.remove('active');
+    document.querySelector('.progress-wrap').style.display = 'block';
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('step1').classList.add('active');
+    updateProgress(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 </body>
