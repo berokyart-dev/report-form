@@ -11,14 +11,42 @@
       --surface: #0f1610;
       --surface2: #131d14;
       --border: #1a2e1b;
-      --green: #2ecc71;
-      --green2: #27ae60;
-      --green-dim: rgba(46,204,113,0.1);
+      --accent: #2ecc71;
+      --accent2: #27ae60;
+      --accent-dim: rgba(46,204,113,0.1);
       --text: #ddeedd;
       --muted: #4a6e4b;
       --input-bg: #0c130c;
       --success: #2ecc71;
       --error: #e74c3c;
+    }
+ 
+    /* Тема 1→2: мятно-зелёная */
+    body.theme-12 {
+      --accent: #98ffd2;
+      --accent2: #5de0a8;
+      --accent-dim: rgba(152,255,210,0.1);
+      --muted: #4a8c6e;
+      --border: #1a3d2e;
+      --surface2: #0f1e18;
+    }
+    /* Тема 2→3: голубо-синяя */
+    body.theme-23 {
+      --accent: #5dade2;
+      --accent2: #2e86c1;
+      --accent-dim: rgba(93,173,226,0.1);
+      --muted: #3a6e8c;
+      --border: #1a2e3d;
+      --surface2: #0f1620;
+    }
+    /* Тема 3→4: мягко-розовая */
+    body.theme-34 {
+      --accent: #f1a7c7;
+      --accent2: #e07aaa;
+      --accent-dim: rgba(241,167,199,0.1);
+      --muted: #7a4a60;
+      --border: #3d1a2e;
+      --surface2: #1e0f18;
     }
     body {
       background: var(--bg);
@@ -37,18 +65,18 @@
     .logo { display: flex; align-items: center; gap: 14px; }
     .logo-icon {
       width: 42px; height: 42px;
-      background: var(--green-dim);
+      background: var(--accent-dim);
       border: 1px solid rgba(46,204,113,0.3);
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       font-size: 22px;
     }
-    .logo-name { font-size: 18px; font-weight: 800; color: var(--green); letter-spacing: 3px; }
+    .logo-name { font-size: 18px; font-weight: 800; color: var(--accent); letter-spacing: 3px; }
     .logo-sub { font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-top: 2px; }
     .header-badge {
       font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-      color: var(--green); border: 1px solid rgba(46,204,113,0.25);
-      background: var(--green-dim); padding: 6px 14px; border-radius: 20px;
+      color: var(--accent); border: 1px solid rgba(255,255,255,0.1);
+      background: var(--accent-dim); padding: 6px 14px; border-radius: 20px;
     }
     .progress-wrap { width: 100%; max-width: 680px; padding: 32px 20px 0; }
     .steps-row { display: flex; align-items: center; margin-bottom: 32px; }
@@ -60,16 +88,16 @@
       font-size: 12px; font-weight: 700; color: var(--muted);
       transition: all 0.3s; position: relative; z-index: 1;
     }
-    .step-circle.active { border-color: var(--green); background: var(--green-dim); color: var(--green); box-shadow: 0 0 16px rgba(46,204,113,0.2); }
-    .step-circle.done { border-color: var(--green2); background: var(--green2); color: #000; }
+    .step-circle.active { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); box-shadow: 0 0 16px var(--accent-dim); }
+    .step-circle.done { border-color: var(--accent2); background: var(--accent2); color: #000; }
     .step-label { font-size: 10px; color: var(--muted); letter-spacing: 0.5px; text-align: center; white-space: nowrap; }
-    .step-label.active { color: var(--green); }
+    .step-label.active { color: var(--accent); }
     .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 -2px; margin-bottom: 22px; transition: background 0.3s; }
-    .step-line.done { background: var(--green2); }
+    .step-line.done { background: var(--accent2); }
     .container { width: 100%; max-width: 680px; padding: 0 20px 60px; }
     .step-panel { display: none; }
     .step-panel.active { display: block; }
-    .panel-title { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+    .panel-title { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
     .panel-heading { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 24px; letter-spacing: -0.3px; }
     .rank-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
     .rank-card {
@@ -77,22 +105,22 @@
       padding: 18px 20px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: all 0.2s;
     }
     .rank-card:hover { border-color: rgba(46,204,113,0.3); background: var(--surface2); }
-    .rank-card.selected { border-color: var(--green); background: var(--green-dim); box-shadow: 0 0 20px rgba(46,204,113,0.1); }
+    .rank-card.selected { border-color: var(--accent); background: var(--accent-dim); box-shadow: 0 0 20px rgba(46,204,113,0.1); }
     .rank-radio {
       width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border);
       background: var(--input-bg); flex-shrink: 0;
       display: flex; align-items: center; justify-content: center; transition: all 0.2s;
     }
-    .rank-card.selected .rank-radio { border-color: var(--green); background: var(--green); }
+    .rank-card.selected .rank-radio { border-color: var(--accent); background: var(--accent); }
     .rank-radio-dot { width: 8px; height: 8px; border-radius: 50%; background: #000; opacity: 0; transition: opacity 0.2s; }
     .rank-card.selected .rank-radio-dot { opacity: 1; }
     .rank-info { flex: 1; }
     .rank-title { font-size: 15px; font-weight: 600; color: var(--text); }
     .rank-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .rank-badge { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--green); background: var(--green-dim); border: 1px solid rgba(46,204,113,0.2); padding: 4px 10px; border-radius: 20px; }
+    .rank-badge { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-dim); padding: 4px 10px; border-radius: 20px; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
     .card-header { background: var(--surface2); border-bottom: 1px solid var(--border); padding: 13px 20px; display: flex; align-items: center; gap: 10px; }
-    .card-num { width: 24px; height: 24px; background: var(--green-dim); border: 1px solid rgba(46,204,113,0.25); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--green); }
+    .card-num { width: 24px; height: 24px; background: var(--accent-dim); border: 1px solid rgba(46,204,113,0.25); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--accent); }
     .card-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text); }
     .card-body { padding: 18px 20px; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -114,13 +142,13 @@
       cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
       transition: opacity 0.2s, transform 0.1s;
     }
-    .btn-primary { background: linear-gradient(135deg, var(--green), var(--green2)); color: #000; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; }
     .btn-secondary { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); flex: 0 0 auto; padding: 13px 20px; }
     .btn:hover { opacity: 0.85; }
     .btn:active { transform: scale(0.99); }
     .btn:disabled { opacity: 0.3; cursor: not-allowed; }
     .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
-    .summary-header { background: var(--green-dim); border-bottom: 1px solid rgba(46,204,113,0.15); padding: 12px 20px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); }
+    .summary-header { background: var(--accent-dim); border-bottom: 1px solid rgba(46,204,113,0.15); padding: 12px 20px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
     .summary-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 20px; border-bottom: 1px solid var(--border); gap: 12px; }
     .summary-row:last-child { border-bottom: none; }
     .summary-key { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; flex-shrink: 0; }
@@ -139,10 +167,10 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .success-screen { display: none; flex-direction: column; align-items: center; text-align: center; padding: 60px 20px; }
     .success-screen.active { display: flex; }
-    .success-icon { width: 80px; height: 80px; background: var(--green-dim); border: 2px solid rgba(46,204,113,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-bottom: 24px; box-shadow: 0 0 40px rgba(46,204,113,0.15); }
-    .success-title { font-size: 22px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+    .success-icon { width: 80px; height: 80px; background: var(--accent-dim); border: 2px solid rgba(46,204,113,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-bottom: 24px; box-shadow: 0 0 40px rgba(46,204,113,0.15); }
+    .success-title { font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
     .success-sub { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 340px; }
-    .btn-new { margin-top: 32px; padding: 13px 32px; background: var(--green-dim); border: 1px solid rgba(46,204,113,0.3); border-radius: 8px; color: var(--green); font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
+    .btn-new { margin-top: 32px; padding: 13px 32px; background: var(--accent-dim); border: 1px solid rgba(46,204,113,0.3); border-radius: 8px; color: var(--accent); font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
     @media (max-width: 500px) {
       .header { padding: 14px 16px; }
       .row { grid-template-columns: 1fr; }
@@ -401,6 +429,11 @@
     document.querySelectorAll('.rank-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
     selectedRank = rank;
+    // Switch theme
+    document.body.classList.remove('theme-12', 'theme-23', 'theme-34');
+    if (rank === '1→2') document.body.classList.add('theme-12');
+    else if (rank === '2→3') document.body.classList.add('theme-23');
+    else if (rank === '3→4') document.body.classList.add('theme-34');
   }
  
   function showToast(msg, type) {
@@ -519,15 +552,58 @@
     btn.disabled = true;
     btn.innerHTML = '<div class="spinner"></div> Отправка...';
  
-    const embedFields = fields.map(f => ({ name: f.key, value: f.val || '—' }));
-    const rankLabels = { '1→2': 'Intern → Intern II', '2→3': 'Intern II → Junior', '3→4': 'Junior → Middle' };
+    const rankColors = { '1→2': 0x98FFD2, '2→3': 0x5DADE2, '3→4': 0xF1A7C7 };
+    const name = document.getElementById('fullName').value.trim();
+    const sid  = document.getElementById('staticId').value.trim();
+ 
+    // Build proof fields depending on rank
+    let proofFields = [];
+    if (selectedRank === '1→2') {
+      proofFields = [
+        { name: '📋 Данные сотрудника', value: document.getElementById('f12_employee').value.trim(), inline: false },
+        { name: '🪪 Удостоверение', value: document.getElementById('f12_cert').value.trim(), inline: false },
+        { name: '💊 Таблетки — Городская (25 шт)', value: document.getElementById('f12_p1').value.trim(), inline: false },
+        { name: '💊 Таблетки — Сенди-Шорс (20 шт)', value: document.getElementById('f12_p2').value.trim(), inline: false },
+        { name: '📝 Вступительный экзамен', value: document.getElementById('f12_p3').value.trim(), inline: false },
+      ];
+    } else if (selectedRank === '2→3') {
+      proofFields = [
+        { name: '💊 Таблетки — Городская (25 шт)', value: document.getElementById('f23_p1').value.trim(), inline: false },
+        { name: '💊 Таблетки — Сенди-Шорс (20 шт)', value: document.getElementById('f23_p2').value.trim(), inline: false },
+        { name: '💊 Таблетки — Палето-Бэй (10 шт)', value: document.getElementById('f23_p3').value.trim(), inline: false },
+        { name: '💉 Вакцины (5 шт)', value: document.getElementById('f23_p4').value.trim(), inline: false },
+        { name: '🩺 Обучение "ПМП"', value: document.getElementById('f23_p5').value.trim(), inline: false },
+      ];
+    } else {
+      proofFields = [
+        { name: '💊 Таблетки — Городская (25 шт)', value: document.getElementById('f34_p1').value.trim(), inline: false },
+        { name: '💊 Таблетки — Сенди-Шорс (20 шт)', value: document.getElementById('f34_p2').value.trim(), inline: false },
+        { name: '💊 Таблетки — Палето-Бэй (10 шт)', value: document.getElementById('f34_p3').value.trim(), inline: false },
+        { name: '💉 Вакцины (8 шт)', value: document.getElementById('f34_p4').value.trim(), inline: false },
+        { name: '🚑 ПМП (20 шт)', value: document.getElementById('f34_p5').value.trim(), inline: false },
+        { name: '📝 Экзамен "Мед. обслуживание и уборка"', value: document.getElementById('f34_p6').value.trim(), inline: false },
+        { name: '📝 Экзамен "Выход в жизнь"', value: document.getElementById('f34_p7').value.trim(), inline: false },
+        { name: '🫀 Дефибриллятор', value: document.getElementById('f34_p8').value.trim(), inline: false },
+      ];
+    }
+ 
+    const now = new Date();
+    const dateStr = now.toLocaleString('ru-RU', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
  
     const embed = {
-      title: `🏥 Отчёт на повышение EMS — ${selectedRank}`,
-      description: `**${rankLabels[selectedRank] || selectedRank}**`,
-      color: 0x2ecc71,
-      fields: embedFields,
-      footer: { text: 'EMS • Система отчётности' },
+      title: `🏥 Отчёт на повышение — EMS`,
+      description: [
+        `> 📈 **Повышение:** \`${selectedRank}\``,
+        `> 👤 **Сотрудник:** **${name}**`,
+        `> 🎮 **Статик:** \`#${sid}\``,
+        `> 🕐 **Дата подачи:** ${dateStr}`,
+        ``,
+        `━━━━━━━━━━━━━━━━━━━━━━`,
+        `**📎 Доказательства:**`,
+      ].join('\n'),
+      color: rankColors[selectedRank] || 0x2ecc71,
+      fields: proofFields,
+      footer: { text: 'EMS • Department of Internship • Система отчётности' },
       timestamp: new Date().toISOString()
     };
  
