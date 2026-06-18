@@ -152,7 +152,7 @@
   </style>
 </head>
 <body>
-
+ 
 <div class="header">
   <div class="logo">
     <div class="logo-icon">🏥</div>
@@ -163,7 +163,7 @@
   </div>
   <div class="header-badge">Служебный портал</div>
 </div>
-
+ 
 <div class="progress-wrap">
   <div class="steps-row">
     <div class="step-item">
@@ -182,9 +182,9 @@
     </div>
   </div>
 </div>
-
+ 
 <div class="container">
-
+ 
   <!-- STEP 1: RANK -->
   <div class="step-panel active" id="step1">
     <div class="panel-title">Шаг 1 из 3</div>
@@ -219,12 +219,12 @@
       <button class="btn btn-primary" onclick="goStep(2)">Далее →</button>
     </div>
   </div>
-
+ 
   <!-- STEP 2: DATA (динамические поля) -->
   <div class="step-panel" id="step2">
     <div class="panel-title">Шаг 2 из 3</div>
     <div class="panel-heading" id="step2-heading">Данные для повышения</div>
-
+ 
     <!-- Общие поля (всегда) -->
     <div class="card">
       <div class="card-header"><div class="card-num">01</div><div class="card-title">Личные данные</div></div>
@@ -239,7 +239,7 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- Поля для 1→2 -->
     <div id="fields-12" style="display:none">
       <div class="card">
@@ -276,7 +276,7 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- Поля для 2→3 -->
     <div id="fields-23" style="display:none">
       <div class="card">
@@ -309,7 +309,7 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- Поля для 3→4 -->
     <div id="fields-34" style="display:none">
       <div class="card">
@@ -356,13 +356,13 @@
         </div>
       </div>
     </div>
-
+ 
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="goStep(1)">← Назад</button>
       <button class="btn btn-primary" onclick="goStep(3)">Далее →</button>
     </div>
   </div>
-
+ 
   <!-- STEP 3: CONFIRM -->
   <div class="step-panel" id="step3">
     <div class="panel-title">Шаг 3 из 3</div>
@@ -376,7 +376,7 @@
       <button class="btn btn-primary" id="sendBtn" onclick="sendReport()">✓ Отправить отчёт</button>
     </div>
   </div>
-
+ 
   <!-- SUCCESS -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">✓</div>
@@ -384,32 +384,32 @@
     <div class="success-sub">Ваш отчёт на повышение успешно отправлен в Discord канал ЕМС. Ожидайте рассмотрения.</div>
     <button class="btn-new" onclick="resetForm()">+ Новый отчёт</button>
   </div>
-
+ 
 </div>
-
+ 
 <div class="toast" id="toast"></div>
-
+ 
 <script>
   const WEBHOOK = "https://discord.com/api/webhooks/1517067090048061520/in9vTctsvz3L5BNGc3Beogq69Bz3SF83fv9Lhs40y4Vz59T3VqjyElRpvXtrvljpAsmC";
-
+ 
   let selectedRank = '';
   let currentStep = 1;
-
+ 
   window.addEventListener('DOMContentLoaded', () => updateProgress(1));
-
+ 
   function selectRank(el, rank) {
     document.querySelectorAll('.rank-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
     selectedRank = rank;
   }
-
+ 
   function showToast(msg, type) {
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.className = 'toast ' + type + ' show';
     setTimeout(() => t.classList.remove('show'), 3500);
   }
-
+ 
   function updateProgress(step) {
     for (let i = 1; i <= 3; i++) {
       const sc = document.getElementById('sc' + i);
@@ -425,7 +425,7 @@
       line.className = 'step-line' + (i < step ? ' done' : '');
     }
   }
-
+ 
   function showRankFields() {
     ['fields-12','fields-23','fields-34'].forEach(id => document.getElementById(id).style.display = 'none');
     if (selectedRank === '1→2') {
@@ -439,7 +439,7 @@
       document.getElementById('step2-heading').textContent = 'Отчёт на повышение 3→4';
     }
   }
-
+ 
   function getFieldsForRank() {
     const common = [
       { key: 'Повышение', val: selectedRank },
@@ -475,7 +475,7 @@
       ];
     }
   }
-
+ 
   function validateStep2() {
     const name = document.getElementById('fullName').value.trim();
     const sid = document.getElementById('staticId').value.trim();
@@ -483,7 +483,7 @@
     const fields = getFieldsForRank().slice(3); // skip common 3
     return fields.every(f => f.val.length > 0);
   }
-
+ 
   function fillSummary() {
     const fields = getFieldsForRank();
     const container = document.getElementById('summaryRows');
@@ -494,7 +494,7 @@
       </div>
     `).join('');
   }
-
+ 
   function goStep(step) {
     if (step > currentStep) {
       if (currentStep === 1 && !selectedRank) {
@@ -512,16 +512,16 @@
     updateProgress(step);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
+ 
   async function sendReport() {
     const fields = getFieldsForRank();
     const btn = document.getElementById('sendBtn');
     btn.disabled = true;
     btn.innerHTML = '<div class="spinner"></div> Отправка...';
-
+ 
     const embedFields = fields.map(f => ({ name: f.key, value: f.val || '—' }));
     const rankLabels = { '1→2': 'Intern → Intern II', '2→3': 'Intern II → Junior', '3→4': 'Junior → Middle' };
-
+ 
     const embed = {
       title: `🏥 Отчёт на повышение EMS — ${selectedRank}`,
       description: `**${rankLabels[selectedRank] || selectedRank}**`,
@@ -530,7 +530,7 @@
       footer: { text: 'EMS • Система отчётности' },
       timestamp: new Date().toISOString()
     };
-
+ 
     try {
       const res = await fetch(WEBHOOK, {
         method: 'POST',
@@ -552,7 +552,7 @@
       btn.innerHTML = '✓ Отправить отчёт';
     }
   }
-
+ 
   function resetForm() {
     selectedRank = ''; currentStep = 1;
     document.querySelectorAll('.rank-card').forEach(c => c.classList.remove('selected'));
@@ -567,3 +567,4 @@
 </script>
 </body>
 </html>
+ 
