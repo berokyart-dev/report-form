@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Отчёт о работе</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0e0f13;
-      --surface: #16181f;
-      --border: #2a2d38;
-      --accent: #5865f2;
-      --accent-hover: #4752c4;
-      --text: #e8eaf0;
-      --muted: #7b7f93;
-      --success: #23a55a;
-      --error: #ed4245;
-      --input-bg: #1e2029;
+      --bg: #0a0b0e;
+      --surface: #111318;
+      --surface2: #161920;
+      --border: #1e2130;
+      --gold: #c9a84c;
+      --gold2: #e8c96d;
+      --gold-dim: rgba(201,168,76,0.12);
+      --text: #dde1ef;
+      --muted: #5a607a;
+      --input-bg: #0d0f15;
+      --success: #2ecc71;
+      --error: #e74c3c;
+      --red: #c0392b;
     }
+
+    @import url('data:text/css,');
 
     body {
       background: var(--bg);
@@ -26,137 +31,226 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 32px 16px;
+      padding: 0 0 60px;
     }
 
+    /* TOP BANNER */
+    .banner {
+      width: 100%;
+      background: linear-gradient(180deg, #0d1017 0%, #080a0e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .banner-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--gold), #8a5e1a);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900; color: #000;
+      letter-spacing: -1px;
+    }
+
+    .logo-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .banner-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    /* MAIN */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .page-subtitle {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 32px;
+      letter-spacing: -0.3px;
+    }
+
+    /* CARD */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
-      width: 100%;
-      max-width: 560px;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 36px;
-    }
-
-    .discord-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--accent);
       border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .card-header {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      gap: 10px;
     }
 
-    .discord-icon svg { width: 26px; height: 26px; fill: #fff; }
-
-    .header-text h1 { font-size: 20px; font-weight: 700; }
-    .header-text p { font-size: 13px; color: var(--muted); margin-top: 2px; }
-
-    .section-label {
-      font-size: 10px;
+    .card-num {
+      width: 24px; height: 24px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
+      color: var(--gold);
     }
 
-    .section { margin-bottom: 24px; }
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
 
     .row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
     }
 
     .field {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 12px;
+      gap: 7px;
+      margin-bottom: 14px;
     }
 
     .field:last-child { margin-bottom: 0; }
 
-    label { font-size: 12px; font-weight: 600; color: var(--muted); }
+    label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
     input {
       background: var(--input-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 10px 14px;
+      padding: 11px 14px;
       color: var(--text);
       font-family: inherit;
       font-size: 14px;
       outline: none;
       width: 100%;
-      transition: border-color 0.15s;
+      transition: border-color 0.2s, background 0.2s;
     }
 
-    input::placeholder { color: #3d4055; }
-    input:focus { border-color: var(--accent); }
+    input::placeholder { color: #252836; }
 
-    .divider { height: 1px; background: var(--border); margin: 20px 0; }
-
-    .webhook-box {
-      background: #12141a;
-      border: 1px dashed var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 20px;
+    input:focus {
+      border-color: rgba(201,168,76,0.5);
+      background: #0f1118;
     }
 
-    .webhook-box .section-label { margin-bottom: 10px; }
+    /* SUBMIT CARD */
+    .submit-card {
+      background: linear-gradient(135deg, #0f1118, #0a0c12);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
 
-    .webhook-box input {
-      background: var(--bg);
-      font-family: monospace;
-      font-size: 12px;
+    .webhook-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.6);
+      margin-bottom: 8px;
     }
 
     .btn {
       width: 100%;
-      padding: 13px;
-      background: var(--accent);
-      color: #fff;
+      margin-top: 20px;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold), #8a5e1a);
+      color: #000;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       font-family: inherit;
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: background 0.15s;
+      transition: opacity 0.2s, transform 0.1s;
     }
 
-    .btn:hover { background: var(--accent-hover); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn:hover { opacity: 0.9; }
+    .btn:active { transform: scale(0.99); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
+    /* TOAST */
     .toast {
       position: fixed;
-      bottom: 24px;
+      bottom: 28px;
       left: 50%;
       transform: translateX(-50%) translateY(100px);
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 12px 20px;
-      font-size: 14px;
-      font-weight: 500;
+      padding: 13px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
       transition: transform 0.3s ease;
       z-index: 100;
       white-space: nowrap;
@@ -167,94 +261,122 @@
     .toast.error { border-color: var(--error); color: var(--error); }
 
     .spinner {
-      width: 18px; height: 18px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(0,0,0,0.3);
+      border-top-color: #000;
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    @media (max-width: 480px) {
-      .card { padding: 24px; }
+    /* DIVIDER */
+    .gold-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      margin: 8px 0 24px;
+    }
+
+    @media (max-width: 500px) {
+      .banner { padding: 14px 20px; }
       .row { grid-template-columns: 1fr; }
+      .page-subtitle { font-size: 20px; }
     }
   </style>
 </head>
 <body>
 
-<div class="card">
-  <div class="header">
-    <div class="discord-icon">
-      <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-    </div>
-    <div class="header-text">
-      <h1>Отчёт о работе</h1>
-      <p>Заполните все поля и отправьте отчёт</p>
+<!-- BANNER -->
+<div class="banner">
+  <div class="banner-logo">
+    <div class="logo-badge">M</div>
+    <div>
+      <div class="logo-text">MAJESTIC RP</div>
+      <div class="logo-sub">Система отчётности</div>
     </div>
   </div>
+  <div class="banner-tag">Служебный портал</div>
+</div>
 
-  <div class="section">
-    <div class="section-label">01 — Личные данные</div>
-    <div class="row">
-      <div class="field">
-        <label>Фамилия</label>
-        <input type="text" id="lastName" placeholder="Иванов" />
+<div class="container">
+  <div class="page-title">Документация</div>
+  <div class="page-subtitle">Отчёт о проделанной работе</div>
+  <div class="gold-line"></div>
+
+  <!-- CARD 1 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">01</div>
+      <div class="card-title">Личные данные</div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="field">
+          <label>Фамилия</label>
+          <input type="text" id="lastName" placeholder="Иванов" />
+        </div>
+        <div class="field">
+          <label>Имя</label>
+          <input type="text" id="firstName" placeholder="Иван" />
+        </div>
       </div>
       <div class="field">
-        <label>Имя</label>
-        <input type="text" id="firstName" placeholder="Иван" />
+        <label>Статик (ID в игре)</label>
+        <input type="text" id="staticId" placeholder="Например: 316757" />
       </div>
     </div>
-    <div class="field">
-      <label>Статик (ID в игре)</label>
-      <input type="text" id="staticId" placeholder="Например: 123456" />
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">02</div>
+      <div class="card-title">Данные сотрудников</div>
+    </div>
+    <div class="card-body">
+      <div class="field" style="margin-bottom:0">
+        <label>Ссылка на сообщение в Discord</label>
+        <input type="url" id="employeeData" placeholder="https://discord.com/channels/..." />
+      </div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <div class="section">
-    <div class="section-label">02 — Данные сотрудников</div>
-    <div class="field">
-      <label>Ссылка на сообщение в Discord</label>
-      <input type="url" id="employeeData" placeholder="https://discord.com/channels/..." />
+  <!-- CARD 3 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">03</div>
+      <div class="card-title">Доказательства работы</div>
+    </div>
+    <div class="card-body">
+      <div class="field">
+        <label>Доказательство #1</label>
+        <input type="url" id="proof1" placeholder="https://discord.com/channels/..." />
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label>Доказательство #2</label>
+        <input type="url" id="proof2" placeholder="https://discord.com/channels/..." />
+      </div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <div class="section">
-    <div class="section-label">03 — Доказательства работы</div>
-    <div class="field">
-      <label>Доказательство #1</label>
-      <input type="url" id="proof1" placeholder="https://discord.com/channels/..." />
+  <!-- SUBMIT -->
+  <div class="submit-card">
+    <div class="webhook-label">✦ Готово к отправке</div>
+    <div style="font-size:13px; color: var(--muted); line-height:1.6;">
+      Убедитесь, что все поля заполнены корректно перед отправкой отчёта в Discord канал.
     </div>
-    <div class="field">
-      <label>Доказательство #2</label>
-      <input type="url" id="proof2" placeholder="https://discord.com/channels/..." />
-    </div>
+    <button class="btn" id="sendBtn" onclick="sendReport()">
+      ➤ Отправить отчёт
+    </button>
   </div>
-
-  <div class="divider"></div>
-
-  <div class="webhook-box">
-    <div class="section-label">⚙ Discord Webhook</div>
-    <div class="field" style="margin-bottom:0">
-      <label>Webhook URL</label>
-      <input type="url" id="webhookUrl" placeholder="https://discord.com/api/webhooks/..." />
-    </div>
-  </div>
-
-  <button class="btn" id="sendBtn" onclick="sendReport()">
-    ➤ Отправить отчёт
-  </button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
+  const WEBHOOK = "https://discord.com/api/webhooks/1517067090048061520/in9vTctsvz3L5BNGc3Beogq69Bz3SF83fv9Lhs40y4Vz59T3VqjyElRpvXtrvljpAsmC";
+
   function showToast(msg, type) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -269,13 +391,9 @@
     const employeeData = document.getElementById('employeeData').value.trim();
     const proof1       = document.getElementById('proof1').value.trim();
     const proof2       = document.getElementById('proof2').value.trim();
-    const webhookUrl   = document.getElementById('webhookUrl').value.trim();
 
     if (!lastName || !firstName || !staticId || !employeeData || !proof1 || !proof2) {
       showToast('⚠️ Заполните все поля!', 'error'); return;
-    }
-    if (!webhookUrl.startsWith('https://discord.com/api/webhooks/')) {
-      showToast('⚠️ Введите корректный Webhook URL', 'error'); return;
     }
 
     const btn = document.getElementById('sendBtn');
@@ -284,7 +402,7 @@
 
     const embed = {
       title: '📋 Новый отчёт о работе',
-      color: 0x5865f2,
+      color: 0xc9a84c,
       fields: [
         { name: '👤 Сотрудник', value: `**${lastName} ${firstName}**`, inline: true },
         { name: '🎮 Статик', value: `\`${staticId}\``, inline: true },
@@ -293,27 +411,27 @@
         { name: '✅ Доказательство #1', value: proof1 },
         { name: '✅ Доказательство #2', value: proof2 },
       ],
-      footer: { text: 'Отправлено через форму' },
+      footer: { text: 'Majestic RP • Система отчётности' },
       timestamp: new Date().toISOString()
     };
 
     try {
-      const res = await fetch(webhookUrl, {
+      const res = await fetch(WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ embeds: [embed] })
       });
 
       if (res.ok || res.status === 204) {
-        showToast('✅ Отчёт отправлен в Discord!', 'success');
+        showToast('✅ Отчёт успешно отправлен!', 'success');
         ['lastName','firstName','staticId','employeeData','proof1','proof2'].forEach(id => {
           document.getElementById(id).value = '';
         });
       } else {
-        showToast('❌ Ошибка. Проверьте Webhook URL.', 'error');
+        showToast('❌ Ошибка отправки. Попробуйте снова.', 'error');
       }
     } catch(e) {
-      showToast('❌ Не удалось отправить. Проверьте соединение.', 'error');
+      showToast('❌ Не удалось отправить.', 'error');
     }
 
     btn.disabled = false;
